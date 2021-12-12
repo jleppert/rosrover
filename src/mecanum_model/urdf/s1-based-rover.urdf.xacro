@@ -19,7 +19,7 @@
   <link name="base_link">
     <visual>
       <geometry>
-        <mesh filename="package://urdf_tutorial/meshes/new/chassis.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://mecanum_model/meshes/chassis.stl" scale="0.001 0.001 0.001"/>
        </geometry>
        <material name="black" />
     </visual>
@@ -35,7 +35,7 @@
  <link name="sprayer_assembly">
     <visual>
       <geometry>
-        <mesh filename="package://urdf_tutorial/meshes/new/sprayer_assembly.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="package://mecanum_model/meshes/sprayer_assembly.stl" scale="0.001 0.001 0.001"/>
        </geometry>
        <material name="light_grey" />
     </visual>
@@ -44,7 +44,7 @@
   <joint name="wheel1_shaft_joint" type="continuous">
      <origin xyz="-0.065 0.1 0.0" rpy="0 0 0" />
 
-      <axis xyz="0 1 0"/>
+      <axis xyz="1 0 0"/>
 
      <parent link="base_link"/>
      <child link="wheel1_shaft" />
@@ -54,14 +54,14 @@
    <visual>
      <origin xyz="0 0 0.0" rpy="0 0 0" />
      <geometry>
-       <mesh filename="package://urdf_tutorial/meshes/new/wheel_shaft.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="package://mecanum_model/meshes/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
      </geometry>
      <material name="black" />
    </visual>
    <collision>
      <origin xyz="0 0 0.0"/>
      <geometry>
-       <mesh filename="package://urdf_tutorial/meshes/new/wheel_shaft.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="package://mecanum_model/meshes/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
      </geometry>
    </collision>
    <inertial>
@@ -85,7 +85,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-      	<mesh filename="package://urdf_tutorial/meshes/new/wheel_cw.stl" scale="0.001 0.001 0.001"/>
+      	<mesh filename="package://mecanum_model/meshes/wheel_cw.stl" scale="0.001 0.001 0.001"/>
 	     </geometry>
        <material name="light_grey" />
     </visual>
@@ -109,7 +109,7 @@
     <joint name="wheel2_shaft_joint" type="continuous">
      <origin xyz="0.065 0.1 0.0" rpy="0 0 0" />
 
-      <axis xyz="0 1 0"/>
+      <axis xyz="1 0 0"/>
       
      <parent link="base_link"/>
      <child link="wheel2_shaft" />
@@ -119,14 +119,14 @@
    <visual>
      <origin xyz="0 0 0.0" rpy="0 0 0" />
      <geometry>
-       <mesh filename="package://urdf_tutorial/meshes/new/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="package://mecanum_model/meshes/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
      </geometry>
      <material name="black" />
    </visual>
    <collision>
      <origin xyz="0 0 0.0"/>
      <geometry>
-       <mesh filename="package://urdf_tutorial/meshes/new/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="package://mecanum_model/meshes/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
      </geometry>
    </collision>
    <inertial>
@@ -150,7 +150,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-      	<mesh filename="package://urdf_tutorial/meshes/new/wheel_ccw.stl" scale="0.001 0.001 0.001"/>
+      	<mesh filename="package://mecanum_model/meshes/wheel_ccw.stl" scale="0.001 0.001 0.001"/>
 	     </geometry>
        <material name="light_grey" />
     </visual>
@@ -174,7 +174,7 @@
    <joint name="wheel3_shaft_joint" type="continuous">
      <origin xyz="0.065 -0.1 0.0" rpy="0 0 0" />
 
-      <axis xyz="0 1 0"/>
+      <axis xyz="1 0 0"/>
       
      <parent link="base_link"/>
      <child link="wheel3_shaft" />
@@ -184,14 +184,14 @@
    <visual>
      <origin xyz="0 0 0.0" rpy="0 0 0" />
      <geometry>
-       <mesh filename="package://urdf_tutorial/meshes/new/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="package://mecanum_model/meshes/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
      </geometry>
      <material name="black" />
    </visual>
    <collision>
      <origin xyz="0 0 0.0"/>
      <geometry>
-       <mesh filename="package://urdf_tutorial/meshes/new/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="package://mecanum_model/meshes/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
      </geometry>
    </collision>
    <inertial>
@@ -215,7 +215,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-      	<mesh filename="package://urdf_tutorial/meshes/new/wheel_cw.stl" scale="0.001 0.001 0.001"/>
+      	<mesh filename="package://mecanum_model/meshes/wheel_cw.stl" scale="0.001 0.001 0.001"/>
 	     </geometry>
        <material name="light_grey" />
     </visual>
@@ -239,7 +239,7 @@
    <joint name="wheel4_shaft_joint" type="continuous">
      <origin xyz="-0.065 -0.1 0.0" rpy="0 0 0" />
 
-      <axis xyz="0 1 0"/>
+      <axis xyz="1 0 0"/>
       
      <parent link="base_link"/>
      <child link="wheel4_shaft" />
@@ -249,14 +249,14 @@
    <visual>
      <origin xyz="0 0 0.0" rpy="0 0 0" />
      <geometry>
-       <mesh filename="package://urdf_tutorial/meshes/new/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="package://mecanum_model/meshes/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
      </geometry>
      <material name="black" />
    </visual>
    <collision>
      <origin xyz="0 0 0.0"/>
      <geometry>
-       <mesh filename="package://urdf_tutorial/meshes/new/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="package://mecanum_model/meshes/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
      </geometry>
    </collision>
    <inertial>
@@ -280,7 +280,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-      	<mesh filename="package://urdf_tutorial/meshes/new/wheel_ccw.stl" scale="0.001 0.001 0.001"/>
+      	<mesh filename="package://mecanum_model/meshes/wheel_ccw.stl" scale="0.001 0.001 0.001"/>
 	     </geometry>
        <material name="light_grey" />
     </visual>
