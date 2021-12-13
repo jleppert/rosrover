@@ -6,6 +6,9 @@
   <xacro:property name="wheel_radius" value="${102.041016 / 2 * 0.001}" />
   <xacro:property name="wheel_width" value="${45.538025 * 0.001}" />
 
+  <xacro:property name="wheel_shaft_radius" value="${5.0 * 0.001}" />
+  <xacro:property name="wheel_shaft_length" value="${37.585724 * 0.001}" />
+
   <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
   <material name="light_grey"><color rgba="0.4 0.4 0.4 1.0" /></material>
 
@@ -111,13 +114,13 @@
      </geometry>
      <material name="black" />
    </visual>
-   <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+    <collision>
+      <origin rpy="${PI/2} 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="${32.400002 * 0.001} ${37.585724 * 0.001} ${37.599998 * 0.001}"/>
+        <cylinder length="${wheel_shaft_length}" radius="${wheel_shaft_radius}" />
       </geometry>
     </collision>
-    <xacro:box_inertia m="1.0" w="${32.400002 * 0.001}" d="${37.585724 * 0.001}" h="${37.599998 * 0.001}"/>
+    <xacro:cylinder_inertia m="1.0" r="${wheel_shaft_radius}" h="${wheel_shaft_length}"/>
  </link>
 
  <joint name="wheel1_wheel_joint" type="fixed">
@@ -162,12 +165,12 @@
      <material name="black" />
    </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="${PI/2} 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="${32.400002 * 0.001} ${37.585724 * 0.001} ${37.599998 * 0.001}"/>
+        <cylinder length="${wheel_shaft_length}" radius="${wheel_shaft_radius}" />
       </geometry>
     </collision>
-    <xacro:box_inertia m="1.0" w="${32.400002 * 0.001}" d="${37.585724 * 0.001}" h="${37.599998 * 0.001}"/>
+    <xacro:cylinder_inertia m="1.0" r="${wheel_shaft_radius}" h="${wheel_shaft_length}"/>
  </link>
 
  <joint name="wheel2_wheel_joint" type="fixed">
@@ -212,12 +215,12 @@
      <material name="black" />
    </visual>
    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="${PI/2} 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="${32.400002 * 0.001} ${37.585724 * 0.001} ${37.599998 * 0.001}"/>
+        <cylinder length="${wheel_shaft_length}" radius="${wheel_shaft_radius}" />
       </geometry>
     </collision>
-    <xacro:box_inertia m="1.0" w="${32.400002 * 0.001}" d="${37.585724 * 0.001}" h="${37.599998 * 0.001}"/>
+    <xacro:cylinder_inertia m="1.0" r="${wheel_shaft_radius}" h="${wheel_shaft_length}"/>
  </link>
 
  <joint name="wheel3_wheel_joint" type="fixed">
@@ -229,7 +232,7 @@
 
   <link name="wheel3">
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 ${PI}"/>
       <geometry>
       	<mesh filename="file://$(find mecanum_model)/meshes/wheel_cw.stl" scale="0.001 0.001 0.001"/>
 	     </geometry>
@@ -261,13 +264,13 @@
      </geometry>
      <material name="black" />
    </visual>
-   <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+    <collision>
+      <origin rpy="${PI/2} 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="${32.400002 * 0.001} ${37.585724 * 0.001} ${37.599998 * 0.001}"/>
+        <cylinder length="${wheel_shaft_length}" radius="${wheel_shaft_radius}" />
       </geometry>
     </collision>
-    <xacro:box_inertia m="1.0" w="${32.400002 * 0.001}" d="${37.585724 * 0.001}" h="${37.599998 * 0.001}"/>
+    <xacro:cylinder_inertia m="1.0" r="${wheel_shaft_radius}" h="${wheel_shaft_length}"/>
  </link>
 
  <joint name="wheel4_wheel_joint" type="fixed">
@@ -279,7 +282,7 @@
 
   <link name="wheel4">
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 ${PI}"/>
       <geometry>
       	<mesh filename="file://$(find mecanum_model)/meshes/wheel_ccw.stl" scale="0.001 0.001 0.001"/>
 	     </geometry>
