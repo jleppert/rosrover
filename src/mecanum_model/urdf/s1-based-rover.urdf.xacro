@@ -2,8 +2,9 @@
 <robot name="rover" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:property name="PI" value="3.1415926535897931" />
-  <xacro:property name="wheel_radius" value="0.050" />
-  <xacro:property name="wheel_width" value="0.0505" />
+  
+  <xacro:property name="wheel_radius" value="${102.041016 / 2 * 0.001}" />
+  <xacro:property name="wheel_width" value="${45.538025 * 0.001}" />
 
   <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
   <material name="light_grey"><color rgba="0.4 0.4 0.4 1.0" /></material>
@@ -58,7 +59,7 @@
   <link name="chassis">
     <visual>
       <geometry>
-        <mesh filename="$(find mecanum_model)/meshes/chassis.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file://$(find mecanum_model)/meshes/chassis.stl" scale="0.001 0.001 0.001"/>
        </geometry>
        <material name="black" />
     </visual>
@@ -80,7 +81,7 @@
  <link name="sprayer_assembly">
     <visual>
       <geometry>
-        <mesh filename="$(find mecanum_model)/meshes/sprayer_assembly.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file://$(find mecanum_model)/meshes/sprayer_assembly.stl" scale="0.001 0.001 0.001"/>
        </geometry>
        <material name="light_grey" />
     </visual>
@@ -106,7 +107,7 @@
    <visual>
      <origin xyz="0 0 0.0" rpy="0 0 0" />
      <geometry>
-       <mesh filename="$(find mecanum_model)/meshes/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="file://$(find mecanum_model)/meshes/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
      </geometry>
      <material name="black" />
    </visual>
@@ -130,33 +131,33 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-      	<mesh filename="$(find mecanum_model)/meshes/wheel_cw.stl" scale="0.001 0.001 0.001"/>
+      	<mesh filename="file://$(find mecanum_model)/meshes/wheel_cw.stl" scale="0.001 0.001 0.001"/>
 	     </geometry>
        <material name="light_grey" />
     </visual>
-     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+    <collision>
+      <origin rpy="${PI/2} 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="${10  * 0.001} ${10* 0.001} ${102.040993 * 0.001}"/>
+        <cylinder length="${wheel_width}" radius="${wheel_radius}" />
       </geometry>
     </collision>
-    <xacro:box_inertia m="1.0" w="${45.538025 * 0.001}" d="${102.041016 * 0.001}" h="${102.040993 * 0.001}"/>
+    <xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_width}"/>
   </link>
 
-    <joint name="wheel2_shaft_joint" type="continuous">
-     <origin xyz="0.065 0.1 0.0" rpy="0 0 0" />
+  <joint name="wheel2_shaft_joint" type="continuous">
+    <origin xyz="0.065 0.1 0.0" rpy="0 0 0" />
 
-      <axis xyz="1 0 0"/>
+    <axis xyz="1 0 0"/>
       
-     <parent link="chassis"/>
-     <child link="wheel2_shaft" />
+    <parent link="chassis"/>
+    <child link="wheel2_shaft" />
   </joint>
 
   <link name="wheel2_shaft">
    <visual>
      <origin xyz="0 0 0.0" rpy="0 0 0" />
      <geometry>
-       <mesh filename="$(find mecanum_model)/meshes/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="file://$(find mecanum_model)/meshes/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
      </geometry>
      <material name="black" />
    </visual>
@@ -180,17 +181,17 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-      	<mesh filename="$(find mecanum_model)/meshes/wheel_ccw.stl" scale="0.001 0.001 0.001"/>
+      	<mesh filename="file://$(find mecanum_model)/meshes/wheel_ccw.stl" scale="0.001 0.001 0.001"/>
 	     </geometry>
        <material name="light_grey" />
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="${PI/2} 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="${45.538025  * 0.001} ${102.041016 * 0.001} ${102.040993 * 0.001}"/>
+        <cylinder length="${wheel_width}" radius="${wheel_radius}" />
       </geometry>
     </collision>
-    <xacro:box_inertia m="1.0" w="${45.538025 * 0.001}" d="${102.041016 * 0.001}" h="${102.040993 * 0.001}"/>
+    <xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_width}"/>
   </link>
 
    <joint name="wheel3_shaft_joint" type="continuous">
@@ -206,7 +207,7 @@
    <visual>
      <origin xyz="0 0 0.0" rpy="0 0 0" />
      <geometry>
-       <mesh filename="$(find mecanum_model)/meshes/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="file://$(find mecanum_model)/meshes/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
      </geometry>
      <material name="black" />
    </visual>
@@ -230,17 +231,17 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-      	<mesh filename="$(find mecanum_model)/meshes/wheel_cw.stl" scale="0.001 0.001 0.001"/>
+      	<mesh filename="file://$(find mecanum_model)/meshes/wheel_cw.stl" scale="0.001 0.001 0.001"/>
 	     </geometry>
        <material name="light_grey" />
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="${PI/2} 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="${45.538025  * 0.001} ${102.041016 * 0.001} ${102.040993 * 0.001}"/>
+        <cylinder length="${wheel_width}" radius="${wheel_radius}" />
       </geometry>
     </collision>
-    <xacro:box_inertia m="1.0" w="${45.538025 * 0.001}" d="${102.041016 * 0.001}" h="${102.040993 * 0.001}"/>
+    <xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_width}"/>
   </link>
 
    <joint name="wheel4_shaft_joint" type="continuous">
@@ -256,7 +257,7 @@
    <visual>
      <origin xyz="0 0 0.0" rpy="0 0 0" />
      <geometry>
-       <mesh filename="$(find mecanum_model)/meshes/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="file://$(find mecanum_model)/meshes/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
      </geometry>
      <material name="black" />
    </visual>
@@ -280,16 +281,16 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-      	<mesh filename="$(find mecanum_model)/meshes/wheel_ccw.stl" scale="0.001 0.001 0.001"/>
+      	<mesh filename="file://$(find mecanum_model)/meshes/wheel_ccw.stl" scale="0.001 0.001 0.001"/>
 	     </geometry>
        <material name="light_grey" />
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin rpy="${PI/2} 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="${45.538025  * 0.001} ${102.041016 * 0.001} ${102.040993 * 0.001}"/>
+        <cylinder length="${wheel_width}" radius="${wheel_radius}" />
       </geometry>
     </collision>
-    <xacro:box_inertia m="1.0" w="${45.538025 * 0.001}" d="${102.041016 * 0.001}" h="${102.040993 * 0.001}"/>
+    <xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_width}"/>
   </link>
 </robot>
