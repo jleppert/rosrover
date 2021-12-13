@@ -36,6 +36,7 @@
   </xacro:macro>
 
   <xacro:include filename="$(find mecanum_model)/urdf/s1-based-rover.gazebo" />
+  <xacro:include filename="$(find mecanum_model)/urdf/mecanum/mecanum_wheel_macro.xacro" />
 
   <link name="world"></link>
 
@@ -62,7 +63,7 @@
   <link name="chassis">
     <visual>
       <geometry>
-        <mesh filename="file://$(find mecanum_model)/meshes/chassis.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file://$(find mecanum_model)/meshes/visual/chassis.stl" scale="0.001 0.001 0.001"/>
        </geometry>
        <material name="black" />
     </visual>
@@ -84,7 +85,7 @@
  <link name="sprayer_assembly">
     <visual>
       <geometry>
-        <mesh filename="file://$(find mecanum_model)/meshes/sprayer_assembly.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file://$(find mecanum_model)/meshes/visual/sprayer_assembly.stl" scale="0.001 0.001 0.001"/>
        </geometry>
        <material name="light_grey" />
     </visual>
@@ -110,7 +111,7 @@
    <visual>
      <origin xyz="0 0 0.0" rpy="0 0 0" />
      <geometry>
-       <mesh filename="file://$(find mecanum_model)/meshes/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="file://$(find mecanum_model)/meshes/visual/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
      </geometry>
      <material name="black" />
    </visual>
@@ -127,25 +128,10 @@
    <origin xyz="-0.035 0 0" rpy="0 0 0" />
 
    <parent link="wheel1_shaft"/>
-   <child link="wheel1" />
+   <child link="front_left_wheel_link" />
  </joint>
 
-  <link name="wheel1">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-      	<mesh filename="file://$(find mecanum_model)/meshes/wheel_cw.stl" scale="0.001 0.001 0.001"/>
-	     </geometry>
-       <material name="light_grey" />
-    </visual>
-    <collision>
-      <origin rpy="${PI/2} 0 0" xyz="0 0 0"/>
-      <geometry>
-        <cylinder length="${wheel_width}" radius="${wheel_radius}" />
-      </geometry>
-    </collision>
-    <xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_width}"/>
-  </link>
+  <xacro:mecanum_wheel name="front_left"  side="-1" interface="hardware_interface/EffortJointInterface"/>
 
   <joint name="wheel2_shaft_joint" type="continuous">
     <origin xyz="0.065 0.1 0.0" rpy="0 0 0" />
@@ -160,7 +146,7 @@
    <visual>
      <origin xyz="0 0 0.0" rpy="0 0 0" />
      <geometry>
-       <mesh filename="file://$(find mecanum_model)/meshes/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="file://$(find mecanum_model)/meshes/visual/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
      </geometry>
      <material name="black" />
    </visual>
@@ -177,25 +163,10 @@
    <origin xyz="0.035 0 0" rpy="0 0 0" />
 
    <parent link="wheel2_shaft"/>
-   <child link="wheel2" />
+   <child link="front_right_wheel_link" />
  </joint>
 
-  <link name="wheel2">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-      	<mesh filename="file://$(find mecanum_model)/meshes/wheel_ccw.stl" scale="0.001 0.001 0.001"/>
-	     </geometry>
-       <material name="light_grey" />
-    </visual>
-    <collision>
-      <origin rpy="${PI/2} 0 0" xyz="0 0 0"/>
-      <geometry>
-        <cylinder length="${wheel_width}" radius="${wheel_radius}" />
-      </geometry>
-    </collision>
-    <xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_width}"/>
-  </link>
+ <xacro:mecanum_wheel name="front_right"  side="1" interface="hardware_interface/EffortJointInterface"/>
 
    <joint name="wheel3_shaft_joint" type="continuous">
      <origin xyz="0.065 -0.1 0.0" rpy="0 0 0" />
@@ -210,7 +181,7 @@
    <visual>
      <origin xyz="0 0 0.0" rpy="0 0 0" />
      <geometry>
-       <mesh filename="file://$(find mecanum_model)/meshes/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="file://$(find mecanum_model)/meshes/visual/wheel_shaft_max.stl" scale="0.001 0.001 0.001"/>
      </geometry>
      <material name="black" />
    </visual>
@@ -227,25 +198,10 @@
    <origin xyz="0.035 0 0" rpy="0 0 0" />
 
    <parent link="wheel3_shaft"/>
-   <child link="wheel3" />
+   <child link="rear_right_wheel_link" />
  </joint>
 
-  <link name="wheel3">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 ${PI}"/>
-      <geometry>
-      	<mesh filename="file://$(find mecanum_model)/meshes/wheel_cw.stl" scale="0.001 0.001 0.001"/>
-	     </geometry>
-       <material name="light_grey" />
-    </visual>
-    <collision>
-      <origin rpy="${PI/2} 0 0" xyz="0 0 0"/>
-      <geometry>
-        <cylinder length="${wheel_width}" radius="${wheel_radius}" />
-      </geometry>
-    </collision>
-    <xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_width}"/>
-  </link>
+  <xacro:mecanum_wheel name="rear_right"  side="1" interface="hardware_interface/EffortJointInterface"/>
 
    <joint name="wheel4_shaft_joint" type="continuous">
      <origin xyz="-0.065 -0.1 0.0" rpy="0 0 0" />
@@ -260,7 +216,7 @@
    <visual>
      <origin xyz="0 0 0.0" rpy="0 0 0" />
      <geometry>
-       <mesh filename="file://$(find mecanum_model)/meshes/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
+       <mesh filename="file://$(find mecanum_model)/meshes/visual/wheel_shaft_min.stl" scale="0.001 0.001 0.001"/>
      </geometry>
      <material name="black" />
    </visual>
@@ -277,23 +233,10 @@
    <origin xyz="-0.035 0 0" rpy="0 0 0" />
 
    <parent link="wheel4_shaft"/>
-   <child link="wheel4" />
+   <child link="rear_left_wheel_link" />
  </joint>
 
-  <link name="wheel4">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 ${PI}"/>
-      <geometry>
-      	<mesh filename="file://$(find mecanum_model)/meshes/wheel_ccw.stl" scale="0.001 0.001 0.001"/>
-	     </geometry>
-       <material name="light_grey" />
-    </visual>
-    <collision>
-      <origin rpy="${PI/2} 0 0" xyz="0 0 0"/>
-      <geometry>
-        <cylinder length="${wheel_width}" radius="${wheel_radius}" />
-      </geometry>
-    </collision>
-    <xacro:cylinder_inertia m="1.0" r="${wheel_radius}" h="${wheel_width}"/>
-  </link>
+   <xacro:mecanum_wheel name="rear_left"  side="-1" interface="hardware_interface/EffortJointInterface"/>
+
+
 </robot>
