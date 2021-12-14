@@ -46,12 +46,6 @@
   </joint>
 
   <link name="base_footprint">
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-	      <box size="${244.865616 * 0.001} ${302.041534 * 0.001} ${102.041229 * 0.001}"/>
-      </geometry>
-    </collision>
   </link>
 
   <joint name="chassis_joint" type="fixed">
@@ -73,7 +67,7 @@
 	      <box size="${148.399536 * 0.001} ${252.206665 * 0.001} ${55.450001 * 0.001}"/>
       </geometry>
     </collision>
-    <xacro:box_inertia m="1.0" w="${148.399536 * 0.001}" d="${252.206665 * 0.001}" h="${55.450001 * 0.001}"/>
+    <xacro:box_inertia m="10.0" w="${148.399536 * 0.001}" d="${252.206665 * 0.001}" h="${55.450001 * 0.001}"/>
   </link>
 
   <joint name="sprayer_joint" type="fixed">
@@ -90,7 +84,7 @@
        <material name="light_grey" />
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 -0.02 0.013" rpy="0 0 0" />
       <geometry>
         <box size="${144.179398 * 0.001} ${69.498428 * 0.001} ${96.728165 * 0.001}"/>
       </geometry>

@@ -17,11 +17,13 @@ def generate_launch_description():
   rviz_config_file_path = 'rviz/urdf.rviz'
   urdf_file_path = 'urdf/s1-based-rover.urdf.xacro'
   world_file_path = 'worlds/empty.world'
-    
+
+  robot_controllers_file_path = 'config/controller.yaml'
+
   # Pose where we want to spawn the robot
   spawn_x_val = '0.0'
   spawn_y_val = '0.0'
-  spawn_z_val = '0.11'
+  spawn_z_val = '0.1'
   spawn_yaw_val = '0.0'
 
   ############ You do not need to change anything below this line #############
@@ -34,6 +36,8 @@ def generate_launch_description():
   world_path = os.path.join(pkg_share, world_file_path)
   gazebo_models_path = os.path.join(pkg_share, gazebo_models_path)
   os.environ["GAZEBO_MODEL_PATH"] = gazebo_models_path
+
+  robot_controllers_path = os.path.join(pkg_share, robot_controllers_file_path)
   
   # Launch configuration variables specific to simulation
   gui = LaunchConfiguration('gui')
@@ -124,6 +128,18 @@ def generate_launch_description():
     output='screen',
     arguments=['-d', rviz_config_file])
 
+  # Launch controller manager
+  robot_description = {"robot_description": Command(['xacro ', urdf_model])}
+  control_node_cmd = Node(
+        package="controller_manager",
+        executable="ros2_control_node",
+        parameters=[robot_description, robot_controllers_path],
+        output={
+            "stdout": "screen",
+            "stderr": "screen",
+        },
+    )
+
   # Start Gazebo server
   start_gazebo_server_cmd = IncludeLaunchDescription(
     PythonLaunchDescriptionSource(os.path.join(pkg_gazebo_ros, 'launch', 'gzserver.launch.py')),
@@ -170,5 +186,7 @@ def generate_launch_description():
   ld.add_action(start_robot_state_publisher_cmd)
   ld.add_action(start_joint_state_publisher_cmd)
   #ld.add_action(start_rviz_cmd)
+
+  ld.add_action(control_node_cmd)
 
   return ld
